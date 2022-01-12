@@ -1,0 +1,4 @@
+* BottomCollider 寬度不可超出 Player，置於 Player 的 Collider 下方，越細越好。
+
+* Rigidbody2D 的 Collider 可利用 Sleeping Mode 來設定是否一直發揮作用(綠框的明暗)，在暗的狀態下，OnTriggerEnter2D 等機制將無法觸發。
+  可將它設為 Never sleep，來避免上述問題。由於相當消耗資源，因此通常只設在玩家身上。
