@@ -6,7 +6,7 @@ public class AttackCollider : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("Ground"))
+        if (collision.tag.Equals("Enemy"))
         {
             Destroy(collision.gameObject);
         }

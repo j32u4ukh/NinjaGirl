@@ -1,4 +1,9 @@
-* BottomCollider 寬度不可超出 Player，置於 Player 的 Collider 下方，越細越好。
+> BottomCollider 寬度不可超出 Player，置於 Player 的 Collider 下方，越細越好。
 
-* Rigidbody2D 的 Collider 可利用 Sleeping Mode 來設定是否一直發揮作用(綠框的明暗)，在暗的狀態下，OnTriggerEnter2D 等機制將無法觸發。
+> Rigidbody2D 的 Collider 可利用 Sleeping Mode 來設定是否一直發揮作用(綠框的明暗)，在暗的狀態下，OnTriggerEnter2D 等機制將無法觸發。
   可將它設為 Never sleep，來避免上述問題。由於相當消耗資源，因此通常只設在玩家身上。
+
+>> 當初此問題發生於武器的 Collider 已經觸碰到牆壁，且尚未將 Player 和攻擊的 Rigidbody2D 做區分所造成，使得系統以為玩家已將觸到牆壁。
+   當兩者區分開後，就不需要使用 Never sleep 了。
+
+> Any state 連出去的動畫，若不只有一張圖片，要將 "Can Translat to" 勾選掉。
