@@ -31,9 +31,6 @@ public class FemaleZonbie : MaleZonbie
                 transform.position = Vector3.MoveTowards(transform.position, target, attack_speed * Time.deltaTime);
             }
 
-            audio_source.PlayOneShot(attack_clip);
-            audio_source.volume = 0.5f;
-            animator.SetTrigger("Attack");
             is_attacked = true;
             return;
         }

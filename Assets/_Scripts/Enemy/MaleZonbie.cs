@@ -54,7 +54,6 @@ public class MaleZonbie : MonoBehaviour
         {
             hp--;
             audio_source.PlayOneShot(hurt_clip);
-            audio_source.volume = 1.0f;
 
             if (hp < 1)
             {
@@ -98,7 +97,6 @@ public class MaleZonbie : MonoBehaviour
             }
 
             audio_source.PlayOneShot(attack_clip);
-            audio_source.volume = 1.0f;
             animator.SetTrigger("Attack");
             is_attacked = true;
             return;
