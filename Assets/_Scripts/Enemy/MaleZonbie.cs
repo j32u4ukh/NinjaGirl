@@ -10,6 +10,10 @@ public class MaleZonbie : MonoBehaviour
     protected BoxCollider2D m_collider;
     protected SpriteRenderer sr;
 
+    [SerializeField] protected AudioClip hurt_clip;
+    [SerializeField] protected AudioClip attack_clip;
+    protected AudioSource audio_source;
+
     public GameObject attack_collider_obj;
     protected float attack_distance = 1.3f;
     public int hp;
@@ -29,6 +33,7 @@ public class MaleZonbie : MonoBehaviour
         player = GameObject.Find("Player");
         m_collider = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        audio_source = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -48,8 +53,10 @@ public class MaleZonbie : MonoBehaviour
         if (collision.tag.Equals("PlayerAttack"))
         {
             hp--;
+            audio_source.PlayOneShot(hurt_clip);
+            audio_source.volume = 1.0f;
 
-            if(hp < 1)
+            if (hp < 1)
             {
                 animator.SetTrigger("Dead");
                 m_collider.enabled = false;
@@ -90,6 +97,8 @@ public class MaleZonbie : MonoBehaviour
                 return;
             }
 
+            audio_source.PlayOneShot(attack_clip);
+            audio_source.volume = 1.0f;
             animator.SetTrigger("Attack");
             is_attacked = true;
             return;

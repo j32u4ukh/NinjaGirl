@@ -21,11 +21,18 @@ public class Player : MonoBehaviour
     public GameObject kunai_prefab;
     float kunai_distance;
 
+    public AudioClip hurt_clip;
+    public AudioClip item_clip;
+    public AudioClip kunai_clip;
+    public AudioClip sword_clip;
+    AudioSource audio_source;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        audio_source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -103,6 +110,12 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hurtByEnemy(collision);
+
+        if (collision.tag.Equals("Item"))
+        {
+            audio_source.PlayOneShot(item_clip);
+            Destroy(collision.gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -116,6 +129,7 @@ public class Player : MonoBehaviour
         {
             hp--;
             is_hurt = true;
+            audio_source.PlayOneShot(hurt_clip);
 
             if (hp < 1)
             {
@@ -213,5 +227,15 @@ public class Player : MonoBehaviour
         animator.ResetTrigger("Throw");
 
         attack_collider_obj.SetActive(false);
+    }
+
+    public void playSwordEffect()
+    {
+        audio_source.PlayOneShot(sword_clip);
+    }
+
+    public void playKunaiEffect()
+    {
+        audio_source.PlayOneShot(kunai_clip);
     }
 }
