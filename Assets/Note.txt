@@ -7,3 +7,10 @@
    當兩者區分開後，就不需要使用 Never sleep 了。
 
 > Any state 連出去的動畫，若不只有一張圖片，要將 "Can Translat to" 勾選掉。
+
+> CineMachine > CineMachineVirtualCamera > Body 
+>> X Damping = 1，追隨目標離相機多遠才開始移動
+>> Screen X = 0.5，CineMachine 基準現在螢幕的位置(比例 0 ~ 1，0.5 表示正中間)
+>> Dead Width Zone = 0.1，螢幕寬度 0.1 的區間內，相機不會調整位置
+>> Soft Zone Width = 0.8，CineMachine 的藍色區域(玩家可移動到的距離)大小。紅色區域為玩家無法移動到的地方。
+>> Bias X，調整藍色區域的偏移，受到 Dead Zone 設定區域的限制(一定會包含 Dead Zone)
