@@ -273,6 +273,7 @@ MonoBehaviour:
   item_clip: {fileID: 8300000, guid: 5188f68e86b1e044b8375233b7de5781, type: 3}
   kunai_clip: {fileID: 8300000, guid: 535e2261332f39546b861cc924762257, type: 3}
   sword_clip: {fileID: 8300000, guid: a1915115a9d57a143b69ccc5aae23bb6, type: 3}
+  dead_clip: {fileID: 8300000, guid: 416e9a0a2210c074e9599ba59a0d48b2, type: 3}
 --- !u!1 &814628022210512637
 GameObject:
   m_ObjectHideFlags: 0

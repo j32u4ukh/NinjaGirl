@@ -18,5 +18,19 @@ public class PlayerBottomCollider : MonoBehaviour
             player.can_jump = true;
             player.animator.SetBool("Jump", false);
         }
+        else if (collision.tag.Equals("AirPlatform"))
+        {
+            player.can_jump = true;
+            player.animator.SetBool("Jump", false);
+            player.transform.parent = collision.transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("AirPlatform"))
+        {
+            player.transform.parent = null;
+        }
     }
 }

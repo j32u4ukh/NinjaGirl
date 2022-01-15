@@ -30,7 +30,7 @@ public class Kunai : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 無論碰到什麼東西都消失
-        if (collision)
+        if (!collision.tag.Equals("StopPoint"))
         {
             Destroy(gameObject);
         }

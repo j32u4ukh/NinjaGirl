@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerAttack
   - Item
+  - StopPoint
+  - AirPlatform
   layers:
   - Default
   - TransparentFX

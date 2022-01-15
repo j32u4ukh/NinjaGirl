@@ -26,7 +26,7 @@ public class MaleZonbie : MonoBehaviour
 
     protected GameObject player;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         origin = transform.position;
@@ -48,7 +48,7 @@ public class MaleZonbie : MonoBehaviour
         attackAndMove();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("PlayerAttack"))
         {
@@ -69,7 +69,7 @@ public class MaleZonbie : MonoBehaviour
         }
     }
 
-    protected void attackAndMove()
+    protected virtual void attackAndMove()
     {
         if (is_alive)
         {

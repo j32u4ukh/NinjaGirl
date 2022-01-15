@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public AudioClip item_clip;
     public AudioClip kunai_clip;
     public AudioClip sword_clip;
+    public AudioClip dead_clip;
     AudioSource audio_source;
 
     private void Awake()
@@ -123,17 +124,36 @@ public class Player : MonoBehaviour
         hurtByEnemy(collision);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.name.Equals("BoundBottom"))
+        {
+            hp = 0;
+            is_hurt = true;
+            audio_source.PlayOneShot(dead_clip);
+
+            // TODO: 此種死亡發生在畫面外，是否還有播放動畫的必要？
+            animator.SetBool("Dead", true);
+
+            // 避免玩家死後仍可左右翻轉方向
+            is_attacking = true;
+
+            // 確保玩家死後直接停在原地
+            m_rigidbody.velocity = Vector2.zero;
+        }
+    }
+
     void hurtByEnemy(Collider2D collision)
     {
         if (collision.tag.Equals("Enemy") && !is_hurt && can_be_hurt)
         {
             hp--;
             is_hurt = true;
-            audio_source.PlayOneShot(hurt_clip);
 
             if (hp < 1)
             {
                 animator.SetBool("Dead", true);
+                audio_source.PlayOneShot(dead_clip);
 
                 // 避免玩家死後仍可左右翻轉方向
                 is_attacking = true;
@@ -145,6 +165,7 @@ public class Player : MonoBehaviour
             {                
                 can_be_hurt = false;
                 animator.SetBool("Hurt", true);
+                audio_source.PlayOneShot(hurt_clip);
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
 
                 if (transform.localScale.x == 1.0f)
