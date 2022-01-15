@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PanelButtonScript : MonoBehaviour
 {
@@ -37,5 +37,13 @@ public class PanelButtonScript : MonoBehaviour
 
         GameObject play_btn = GameObject.Find("Canvas/SaveAreaPanel/PlayButton");
         play_btn.SetActive(false);
+
+        StartCoroutine(waitForPlayerRunningOut());
+    }
+
+    IEnumerator waitForPlayerRunningOut()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("LevelSelect");
     }
 }
