@@ -28,4 +28,14 @@ public class PanelButtonScript : MonoBehaviour
     {
         stop_botton.SetActive(false);
     }
+
+    public void clickPlayButton()
+    {
+        GameObject player = GameObject.Find("Player");
+        Animator animator = player.GetComponent<Animator>();
+        animator.SetBool("Run", true);
+
+        GameObject play_btn = GameObject.Find("Canvas/SaveAreaPanel/PlayButton");
+        play_btn.SetActive(false);
+    }
 }
