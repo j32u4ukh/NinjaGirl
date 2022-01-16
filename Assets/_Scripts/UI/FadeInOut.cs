@@ -12,7 +12,6 @@ public class FadeInOut : MonoBehaviour
     {
         if(instance != null)
         {
-            print("Destroy(gameObject)");
             Destroy(gameObject);
         }
         else

@@ -6,13 +6,14 @@ public class SelectSceneButtonScript : MonoBehaviour
     public Sprite button_sprite;
     Image img1, img2, img3;
     int clear_level;
+    BGMController bgm;
 
     private void Awake()
     {
         img1 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level1Button").GetComponent<Image>();
         img2 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level2Button").GetComponent<Image>();
         img3 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level3Button").GetComponent<Image>();
-
+        bgm = GameObject.Find("BGMController").GetComponent<BGMController>();
         clear_level = PlayerPrefs.GetInt("clear_level");
 
         if (clear_level == 0)
@@ -34,6 +35,7 @@ public class SelectSceneButtonScript : MonoBehaviour
 
     public void toLevel1()
     {
+        bgm.playDecisionSound();
         FadeInOut.instance.sceneFadeInOut(scene_name: "Level1");
     }
 
@@ -41,7 +43,12 @@ public class SelectSceneButtonScript : MonoBehaviour
     {
         if(clear_level >= 1)
         {
+            bgm.playDecisionSound();
             FadeInOut.instance.sceneFadeInOut(scene_name: "Level2");
+        }
+        else
+        {
+            bgm.playInvalidSound();
         }
     }
 
@@ -49,12 +56,18 @@ public class SelectSceneButtonScript : MonoBehaviour
     {
         if (clear_level >= 2)
         {
+            bgm.playDecisionSound();
             FadeInOut.instance.sceneFadeInOut(scene_name: "Level3");
+        }
+        else
+        {
+            bgm.playInvalidSound();
         }
     }
 
     public void toMainMenu()
     {
+        bgm.playDecisionSound();
         FadeInOut.instance.sceneFadeInOut(scene_name: "MainMenu");
     }
 }
