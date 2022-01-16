@@ -18,6 +18,7 @@ public class IsFirstPlayCheck : MonoBehaviour
             PlayerPrefs.SetInt("Kunai", 2);
             PlayerPrefs.SetInt("Stone", 0);
             PlayerPrefs.SetInt("clear_level", 0);
+            //PlayerPrefs.SetInt("clear_level", 2);
         }
     }
 }

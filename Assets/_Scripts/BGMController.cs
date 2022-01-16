@@ -21,20 +21,20 @@ public class BGMController : MonoBehaviour
         {
             case "MainMenu":
                 audio_source.clip = bgm_main_menu;
-                audio_source.volume = 0.7f;
+                audio_source.volume = 0.2f;
                 break;
             case "LevelSelect":
                 audio_source.clip = bgm_level_select;
-                audio_source.volume = 0.7f;
+                audio_source.volume = 0.2f;
                 break;
             case "Level1":
             case "Level2":
                 audio_source.clip = bgm_normal_level;
-                audio_source.volume = 0.5f;
+                audio_source.volume = 0.2f;
                 break;
             case "Level3":
                 audio_source.clip = bgm_boss_level;
-                audio_source.volume = 0.7f;
+                audio_source.volume = 0.2f;
                 break;
         }
 
@@ -46,13 +46,13 @@ public class BGMController : MonoBehaviour
 
     public void playDecisionSound()
     {
-        audio_source.volume = 0.7f;
+        audio_source.volume = 0.2f;
         audio_source.PlayOneShot(btn_decision);
     }
 
     public void playInvalidSound()
     {
-        audio_source.volume = 0.7f;
+        audio_source.volume = 0.2f;
         audio_source.PlayOneShot(btn_invalid);
     }
 }

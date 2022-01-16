@@ -169,6 +169,8 @@ public class PumpkinMan : MonoBehaviour
                     StopAllCoroutines();
                     animator.SetBool("Hurt", false);
                     animator.SetBool("Dead", true);
+                    Time.timeScale = 0.5f;
+                    StartCoroutine(afterDead());
                 }
             }
         }
@@ -232,5 +234,11 @@ public class PumpkinMan : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         sr.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         can_be_hurt = true;
+    }
+
+    IEnumerator afterDead()
+    {
+        yield return new WaitForSecondsRealtime(3.0f);
+        FadeInOut.instance.sceneFadeInOut("LevelSelect");
     }
 }

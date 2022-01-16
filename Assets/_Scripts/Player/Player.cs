@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class Player : MonoBehaviour
 {
@@ -30,8 +32,10 @@ public class Player : MonoBehaviour
     public AudioClip dead_clip;
     AudioSource audio_source;
 
+    InputAction player_move;
+
     private void Awake()
-    {
+    {        
         animator = GetComponent<Animator>();
         m_rigidbody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -41,6 +45,8 @@ public class Player : MonoBehaviour
         hp = PlayerPrefs.GetInt("Hp", 5);
         n_kunai = PlayerPrefs.GetInt("Kunai", 2);
         n_stone = PlayerPrefs.GetInt("Stone", 0);
+
+        player_move = GetComponent<PlayerInput>().currentActionMap["Move"];
     }
 
     private void Update()
@@ -79,9 +85,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //float horizontal = Input.GetAxis("Horizontal");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        //float vertical = Input.GetAxisRaw("Vertical");
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = player_move.ReadValue<Vector2>().x;
 
         if (is_attacking || is_hurt)
         {
