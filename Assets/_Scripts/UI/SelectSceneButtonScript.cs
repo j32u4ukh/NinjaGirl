@@ -13,7 +13,7 @@ public class SelectSceneButtonScript : MonoBehaviour
         img2 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level2Button").GetComponent<Image>();
         img3 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level3Button").GetComponent<Image>();
 
-        clear_level = PlayerPrefs.GetInt("clear_level", 0);
+        clear_level = PlayerPrefs.GetInt("clear_level");
 
         if (clear_level == 0)
         {

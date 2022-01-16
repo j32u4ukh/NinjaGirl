@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     bool is_hurt = false;
     bool can_be_hurt = true;
     [HideInInspector] public bool can_jump = true;
-    int hp = 3;
+    LevelCanvas level_canvas;
+    int hp;
+    int n_kunai;
+    int n_stone;
 
     public GameObject attack_collider_obj;
     public GameObject kunai_prefab;
@@ -33,6 +36,11 @@ public class Player : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         audio_source = GetComponent<AudioSource>();
+        level_canvas = GameObject.Find("/Canvas").GetComponent<LevelCanvas>();
+
+        hp = PlayerPrefs.GetInt("Hp", 5);
+        n_kunai = PlayerPrefs.GetInt("Kunai", 2);
+        n_stone = PlayerPrefs.GetInt("Stone", 0);
     }
 
     private void Update()
@@ -56,8 +64,10 @@ public class Player : MonoBehaviour
                 can_jump = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.G))
+            // animator 避免播放動畫的同時執行到下方程式
+            if (Input.GetKeyDown(KeyCode.G) && (n_kunai > 0) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
+                updateKunai(n_kunai - 1);
                 animator.SetTrigger("Throw");
                 is_attacking = true;
 
@@ -114,7 +124,6 @@ public class Player : MonoBehaviour
         if (collision.tag.Equals("Item"))
         {
             audio_source.PlayOneShot(item_clip);
-            Destroy(collision.gameObject);
         }
     }
 
@@ -127,18 +136,12 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.name.Equals("BottomBound"))
         {
-            hp = 0;
+            //hp = 0;
+            //PlayerPrefs.SetInt("Hp", hp);
+            //level_canvas.updateHp();
+            updateHp(value: 0);
             is_hurt = true;
-            audio_source.PlayOneShot(dead_clip);
-
-            // TODO: 此種死亡發生在畫面外，是否還有播放動畫的必要？
-            animator.SetBool("Dead", true);
-
-            // 避免玩家死後仍可左右翻轉方向
-            is_attacking = true;
-
-            // 確保玩家死後直接停在原地
-            m_rigidbody.velocity = Vector2.zero;
+            playerDead();
         }
     }
 
@@ -146,19 +149,16 @@ public class Player : MonoBehaviour
     {
         if (collision.tag.Equals("Enemy") && !is_hurt && can_be_hurt)
         {
-            hp--;
+            //hp--;
+            //PlayerPrefs.SetInt("Hp", hp);
+            //level_canvas.updateHp();
+            updateHp(hp - 1);
+
             is_hurt = true;
 
             if (hp < 1)
             {
-                animator.SetBool("Dead", true);
-                audio_source.PlayOneShot(dead_clip);
-
-                // 避免玩家死後仍可左右翻轉方向
-                is_attacking = true;
-
-                // 確保玩家死後直接停在原地
-                m_rigidbody.velocity = Vector2.zero;
+                playerDead();
             }
             else
             {                
@@ -257,5 +257,37 @@ public class Player : MonoBehaviour
     public void playKunaiEffect()
     {
         audio_source.PlayOneShot(kunai_clip);
+    }
+
+    void playerDead()
+    {
+        animator.SetBool("Dead", true);
+        audio_source.PlayOneShot(dead_clip);
+
+        // 避免玩家死後仍可左右翻轉方向
+        is_attacking = true;
+
+        // 確保玩家死後直接停在原地
+        m_rigidbody.velocity = Vector2.zero;
+        PlayerPrefs.SetInt("Hp", 5);
+        FadeInOut.instance.sceneFadeInOut("LevelSelect");
+    }
+
+    public void updateHp(int value)
+    {
+        hp = value;
+        level_canvas.updateHp(value: value);
+    }
+
+    public void updateKunai(int value)
+    {
+        n_kunai = value;
+        level_canvas.updateKunai(value: value);
+    }
+
+    public void updateStone(int value = -1)
+    {
+        n_stone = value;
+        level_canvas.updateStone(value: value);
     }
 }

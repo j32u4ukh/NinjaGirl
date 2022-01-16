@@ -53,6 +53,8 @@ public class PanelButtonScript : MonoBehaviour
     {
         noButton();
         PlayerPrefs.DeleteAll();
+        IsFirstPlayCheck ifpc = GameObject.Find("IsFirstPlayCheck").GetComponent<IsFirstPlayCheck>();
+        ifpc.firstTimePlayState();
     }
 
     public void noButton()
