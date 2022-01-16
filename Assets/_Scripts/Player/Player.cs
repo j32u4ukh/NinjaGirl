@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.name.Equals("BoundBottom"))
+        if (collision.collider.name.Equals("BottomBound"))
         {
             hp = 0;
             is_hurt = true;

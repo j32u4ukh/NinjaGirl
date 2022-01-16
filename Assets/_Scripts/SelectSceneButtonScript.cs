@@ -6,15 +6,17 @@ public class SelectSceneButtonScript : MonoBehaviour
 {
     public Sprite button_sprite;
     Image img1, img2, img3;
-    int clear_level = 0;
+    int clear_level;
 
     private void Awake()
     {
-        img1 = GameObject.Find("Canvas/SaveAreaPanel/Level1Button").GetComponent<Image>();
-        img2 = GameObject.Find("Canvas/SaveAreaPanel/Level2Button").GetComponent<Image>();
-        img3 = GameObject.Find("Canvas/SaveAreaPanel/Level3Button").GetComponent<Image>();
+        img1 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level1Button").GetComponent<Image>();
+        img2 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level2Button").GetComponent<Image>();
+        img3 = GameObject.Find("Canvas/SaveAreaPanel/SelectPanelBGImage/Level3Button").GetComponent<Image>();
 
-        if(clear_level == 0)
+        clear_level = PlayerPrefs.GetInt("clear_level", 0);
+
+        if (clear_level == 0)
         {
             img1.sprite = button_sprite;
         }
@@ -34,5 +36,26 @@ public class SelectSceneButtonScript : MonoBehaviour
     public void toLevel1()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void toLevel2()
+    {
+        if(clear_level >= 1)
+        {
+            SceneManager.LoadScene("Level2");
+        }
+    }
+
+    public void toLevel3()
+    {
+        if (clear_level >= 2)
+        {
+            SceneManager.LoadScene("Level3");
+        }
+    }
+
+    public void toMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

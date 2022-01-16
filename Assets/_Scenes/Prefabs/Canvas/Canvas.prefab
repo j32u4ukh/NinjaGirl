@@ -220,7 +220,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923337798822604034}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 923337799897761828}
+        m_TargetAssemblyTypeName: PanelButtonScript, Assembly-CSharp
+        m_MethodName: mainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &923337798995347023
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +496,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923337799075113098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 923337799897761828}
+        m_TargetAssemblyTypeName: PanelButtonScript, Assembly-CSharp
+        m_MethodName: replayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &923337799151308852
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +862,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923337799489073048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 923337799897761828}
+        m_TargetAssemblyTypeName: PanelButtonScript, Assembly-CSharp
+        m_MethodName: levelSelectButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &923337799506851382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1398,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   select_panel: {fileID: 923337799367270739}
   stop_botton: {fileID: 923337799888885927}
+  level_select_botton: {fileID: 923337799489073045}
+  main_menu_botton: {fileID: 923337798822604095}
+  replay_botton: {fileID: 923337799075113095}
 --- !u!1 &923337800191620357
 GameObject:
   m_ObjectHideFlags: 0
