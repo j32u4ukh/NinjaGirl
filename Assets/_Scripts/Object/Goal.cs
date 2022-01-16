@@ -11,7 +11,7 @@ public class Goal : MonoBehaviour
             string scene_name = SceneManager.GetActiveScene().name;
             string level_string = scene_name.Substring(5);
             int level = int.Parse(level_string);
-
+            Time.timeScale = 0f;
             PlayerPrefs.SetInt("clear_level", Math.Max(level, PlayerPrefs.GetInt("clear_level", 0)));
             FadeInOut.instance.sceneFadeInOut(scene_name: "LevelSelect");
         }
