@@ -13,7 +13,7 @@ public class Goal : MonoBehaviour
             int level = int.Parse(level_string);
 
             PlayerPrefs.SetInt("clear_level", Math.Max(level, PlayerPrefs.GetInt("clear_level", 0)));
-            SceneManager.LoadScene("LevelSelect");
+            FadeInOut.instance.sceneFadeInOut(scene_name: "LevelSelect");
         }
     }
 }

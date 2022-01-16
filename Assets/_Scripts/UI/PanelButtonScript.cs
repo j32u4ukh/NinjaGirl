@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,14 +40,7 @@ public class PanelButtonScript : MonoBehaviour
 
         GameObject play_btn = GameObject.Find("Canvas/SaveAreaPanel/PlayButton");
         play_btn.SetActive(false);
-
-        StartCoroutine(waitForPlayerRunningOut());
-    }
-
-    IEnumerator waitForPlayerRunningOut()
-    {
-        yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("LevelSelect");
+        FadeInOut.instance.sceneFadeInOut("LevelSelect");
     }
 
     public void resetButton()
@@ -71,19 +63,16 @@ public class PanelButtonScript : MonoBehaviour
 
     public void levelSelectButton()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("LevelSelect");
+        FadeInOut.instance.sceneFadeInOut("LevelSelect");
     }
 
     public void mainMenuButton()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        FadeInOut.instance.sceneFadeInOut("MainMenu");
     }
 
     public void replayButton()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FadeInOut.instance.sceneFadeInOut(scene_name: SceneManager.GetActiveScene().name);
     }
 }

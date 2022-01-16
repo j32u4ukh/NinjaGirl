@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectSceneButtonScript : MonoBehaviour
@@ -35,14 +34,14 @@ public class SelectSceneButtonScript : MonoBehaviour
 
     public void toLevel1()
     {
-        SceneManager.LoadScene("Level1");
+        FadeInOut.instance.sceneFadeInOut(scene_name: "Level1");
     }
 
     public void toLevel2()
     {
         if(clear_level >= 1)
         {
-            SceneManager.LoadScene("Level2");
+            FadeInOut.instance.sceneFadeInOut(scene_name: "Level2");
         }
     }
 
@@ -50,12 +49,12 @@ public class SelectSceneButtonScript : MonoBehaviour
     {
         if (clear_level >= 2)
         {
-            SceneManager.LoadScene("Level3");
+            FadeInOut.instance.sceneFadeInOut(scene_name: "Level3");
         }
     }
 
     public void toMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        FadeInOut.instance.sceneFadeInOut(scene_name: "MainMenu");
     }
 }

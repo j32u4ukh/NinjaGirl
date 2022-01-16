@@ -16,3 +16,9 @@
 >> Bias X，調整藍色區域的偏移，受到 Dead Zone 設定區域的限制(一定會包含 Dead Zone)
 
 > Rigbody > Body Type > 設為 kinematic 可不受重力影響
+
+> WaitForSeconds: 等待遊戲時間，當 Time.timeScale = 0f 時，也會停止計時。
+> WaitForSecondsRealtime: 等待實際時間，不受 Time.timeScale 影響。
+>> Animator 的 Update Mode 要選擇 Unscaled Time，才能與 WaitForSecondsRealtime 搭配使用，不受 Time.timeScale 影響。
+
+
