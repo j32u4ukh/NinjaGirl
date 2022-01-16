@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
     AudioSource audio_source;
 
     InputAction player_move;
+    InputAction player_jump;
+    InputAction player_attack;
+    InputAction player_kunai;
 
     private void Awake()
     {        
@@ -46,7 +49,11 @@ public class Player : MonoBehaviour
         n_kunai = PlayerPrefs.GetInt("Kunai", 2);
         n_stone = PlayerPrefs.GetInt("Stone", 0);
 
-        player_move = GetComponent<PlayerInput>().currentActionMap["Move"];
+        PlayerInput pi = GetComponent<PlayerInput>();
+        player_move = pi.currentActionMap["Move"];
+        player_jump = pi.currentActionMap["Jump"];
+        player_attack = pi.currentActionMap["Attack"];
+        player_kunai = pi.currentActionMap["Kunai"];
     }
 
     private void Update()
@@ -55,13 +62,13 @@ public class Player : MonoBehaviour
         if (!is_hurt)
         {
             // can_jump 確保玩家不在跳躍狀態中又再次按下跳躍，落地後才能再次跳躍
-            if (Input.GetKeyDown(KeyCode.Space) && can_jump)
+            if (player_jump.triggered && can_jump)
             {
                 is_jump_pressed = true;
                 can_jump = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.T))
+            if (player_attack.triggered)
             {
                 animator.SetTrigger("Attack");
                 is_attacking = true;
@@ -71,7 +78,7 @@ public class Player : MonoBehaviour
             }
 
             // animator 避免播放動畫的同時執行到下方程式
-            if (Input.GetKeyDown(KeyCode.G) && (n_kunai > 0) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (player_kunai.triggered && (n_kunai > 0) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Throw") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 updateKunai(n_kunai - 1);
                 animator.SetTrigger("Throw");
