@@ -30,7 +30,7 @@ public class BGMController : MonoBehaviour
             case "Level1":
             case "Level2":
                 audio_source.clip = bgm_normal_level;
-                audio_source.volume = 0.7f;
+                audio_source.volume = 0.5f;
                 break;
             case "Level3":
                 audio_source.clip = bgm_boss_level;
